@@ -1,0 +1,683 @@
+# MASTER PROMPT — G.I.F.T. GREEN FINANCE INTELLIGENCE PLATFORM
+
+## 1. ROLE AND MISSION
+
+Act as a senior full-stack developer, banking UI/UX designer, backend engineer, AI/ML engineer, database architect, cybersecurity specialist, and strict project evaluator.
+
+Build a complete, responsive, functional web application named:
+
+**G.I.F.T. — Green Insights & Financial Transition Platform**
+
+G.I.F.T. helps customers understand their spending, explore relevant green-finance options, compare current and projected costs, calculate financing estimates, and understand why recommendations are made. Authorized bank officers can monitor customer engagement with these recommendations.
+
+This must be a connected application, not just a collection of static mockups. Implement real navigation, backend calculations, data persistence, authentication, role-based access control, and working customer engagement tracking.
+
+Inspect the existing project before changing files. Preserve useful existing work and explain the implementation plan before making major architectural changes.
+
+## 2. REFERENCE IMAGES
+
+I am providing seven approved UI reference images:
+
+1. Customer Login.
+2. Customer Sign Up.
+3. Officer Login.
+4. Customer Home Dashboard.
+5. EV Finance.
+6. Green Home Loan.
+7. Solar Finance.
+8. Officer Dashboard.
+
+Treat all provided images as the primary visual references.
+
+Reproduce their layout, spacing, hierarchy, typography, colour palette, sidebar, cards, charts, form fields, and imagery as closely as practical.
+
+If an image conflicts with the written requirements, follow the written requirements.
+
+Do not merge pages, remove required features, or invent unrelated navigation items. Convert the reference designs into responsive, functional interfaces.
+
+## 3. DESIGN SYSTEM
+
+Use the same premium, nature-inspired banking design across every page.
+
+**Colour palette**
+- Forest green: `#254D3A`
+- Sage green: `#789078`
+- Warm ivory: `#F6F2E8`
+- Warm sand: `#D9CDB9`
+- Charcoal: `#343A35`
+
+**Typography:** Inter or Manrope for body text, with a restrained serif heading style.
+
+Use a dark forest-green sidebar, warm ivory content backgrounds, subtle card borders, moderate corner rounding, simple icons, muted charts, accessible form controls, and restrained natural imagery.
+
+Avoid neon colours, excessive gradients, glassmorphism, glowing effects, excessive AI icons, clutter, and unnecessary animation.
+
+Build reusable components for sidebars, headers, cards, charts, calculators, tables, filters, status labels, and feedback states.
+
+## 4. TECHNICAL ARCHITECTURE
+
+Use:
+- React, TypeScript, and Vite for the frontend.
+- Node.js, Express, and TypeScript for the backend.
+- SQLite for the local prototype database, with an architecture that can later support PostgreSQL.
+- A maintained chart library such as Recharts.
+- Secure password hashing and server-side session handling.
+- Backend validation for all submitted inputs.
+
+Keep frontend components, backend routes, business logic, database access, and calculation functions separated.
+
+Provide a README, database initialization scripts, demo seed data, environment configuration instructions, and tests for critical functionality.
+
+Use the existing stack if the current project already has a working architecture that meets these requirements.
+
+## 5. AUTHENTICATION AND ROLE-BASED ACCESS
+
+Create separate customer and officer experiences.
+
+### Customer Login
+Fields:
+- Customer ID.
+- Linked bank account reference where required by the prototype.
+- Password.
+- Remember Me, if implemented securely.
+- Forgot Password.
+- Sign In.
+- Create Account.
+
+### Customer Sign Up
+Use a guided registration flow:
+1. Personal information: full name, phone number, and email.
+2. Phone verification.
+3. Bank selection and secure account-linking step.
+4. Password creation and account completion.
+
+Include bank name, branch, and location where appropriate.
+
+### Officer Login
+Fields:
+- Bank Name.
+- Employee ID.
+- Password.
+- Remember Me, if implemented securely.
+- Forgot Password.
+- Sign In.
+- Customer Login link.
+
+Authenticate both roles through the backend. Enforce role and branch permissions on every protected API.
+
+Never authenticate users through frontend-only checks. Never treat an account number or employee ID as proof of identity.
+
+For the local prototype, use fictional data and a clearly labelled simulated OTP flow. Do not claim real bank verification, SMS delivery, or live banking integration unless it is genuinely configured.
+
+Never request or store bank PINs, internet-banking passwords, or plaintext passwords.
+
+## 6. CUSTOMER PORTAL — SHARED LAYOUT
+
+All customer pages must share the same sidebar, header, typography, colours, and navigation behaviour.
+
+### Customer sidebar
+
+Include exactly these primary navigation items:
+
+1. Home.
+2. EV Finance.
+3. Green Home Loan.
+4. Solar Finance.
+5. Logout.
+
+**Important:** Remove Go Paperless from the sidebar and do not display it as a recommendation card in the Home dashboard. Do not add Carbon Engine or Reports to the customer sidebar.
+
+### Shared header
+
+Include the customer profile, name, optional search field, and notification controls only where functional.
+
+Protect customer information and ensure each customer can access only their own permitted records.
+
+## 7. CUSTOMER HOME DASHBOARD
+
+### Greeting
+
+Display:
+
+“Good morning, [Customer Name]”
+
+Adapt the greeting to the time of day when reliable local time is available.
+
+Supporting text:
+
+“Here’s a quick view of your spending and recommendations for a greener future.”
+
+### Spending percentage cards
+
+Immediately below the greeting, display exactly three prominent cards.
+
+**Card 1 — Petrol Spending**
+- Percentage of tracked spending.
+- Spending amount, when available.
+- Progress indicator.
+
+**Card 2 — Electricity Bill**
+- Percentage of tracked spending.
+- Spending amount, when available.
+- Progress indicator.
+
+**Card 3 — Home Appliances & Furniture**
+- Percentage of tracked spending.
+- Spending amount, when available.
+- Progress indicator.
+
+Calculate each percentage in the backend:
+
+Percentage = Category spending / Total tracked spending × 100
+
+Define the reporting period and the denominator consistently. The three cards need not total 100% if other spending categories exist.
+
+Never invent real customer spending figures. Mark all simulated figures as demo data.
+
+### Green Insights Overview
+
+Place a section titled **Green Insights Overview** immediately below the spending cards.
+
+It should contain a concise overview of relevant recommendations based on available customer data.
+
+Include only these three recommendation categories:
+
+1. **Consider EV Finance** — suggest exploring an EV when available fuel spending and vehicle information make a comparison relevant.
+2. **Explore Green Home Loan** — suggest suitable energy-efficiency improvements when available home-energy information supports them.
+3. **Look into Solar Finance** — suggest exploring solar installation when electricity spending, consumption, and relevant home information support the option.
+
+Each recommendation card should include:
+- Product title.
+- Short explanation grounded in available data.
+- Potential financial or environmental benefit, if defensibly calculated.
+- A button linking to the relevant page.
+
+Do not include Go Paperless, unrelated statistics, or an extra KPI strip in this section.
+
+If data is insufficient, say that more information is needed rather than generating a confident recommendation.
+
+## 8. EV FINANCE PAGE
+
+Use the approved EV Finance reference image.
+
+### Hero section
+Heading: “Drive Cleaner, Save Smarter”
+
+Supporting text:
+
+“Explore electric vehicles, compare estimated running costs, and understand your financing options.”
+
+### Petrol versus EV bar graph
+
+Display a bar graph comparing:
+- Current estimated annual petrol or petrol/diesel vehicle running costs.
+- Estimated annual EV running costs.
+
+Include currency in INR, chart labels, reporting period, and a clear comparison.
+
+Calculate:
+
+Estimated annual savings = Current annual vehicle running costs − Estimated annual EV running costs.
+
+Percentage reduction = Estimated annual savings / Current annual vehicle running costs × 100.
+
+Only calculate the percentage when the denominator is positive.
+
+Use consistent reporting periods and clearly disclose the assumptions used for fuel price, driving distance, fuel efficiency, EV energy consumption, and charging cost.
+
+### AI explanation
+
+Title: “Why Consider an Electric Vehicle?”
+
+Explain why an EV comparison may be relevant using available spending information and calculated results.
+
+Include:
+- Supporting customer information.
+- Estimated annual cost difference.
+- Important assumptions.
+- Environmental benefits only when supported by explicit calculations.
+- Limitations and next steps.
+
+The explanation must use backend-calculated values. An LLM must not invent financial or environmental figures.
+
+### EV Loan Calculator
+
+Required inputs:
+- EV purchase price.
+- Loan tenure.
+
+Include an optional down-payment input.
+
+The backend calculates:
+- Loan amount.
+- Monthly EMI.
+- Total interest.
+- Total repayment.
+
+If the interest rate is not supplied, use a clearly disclosed demo assumption or request an appropriate rate. Never silently invent a bank-approved rate.
+
+Use the reducing-balance EMI calculation in the backend, including a separate zero-interest case.
+
+Do not display the mathematical formula in the customer interface.
+
+Show a disclaimer that results are estimates, not a loan offer or approval.
+
+## 9. GREEN HOME LOAN PAGE
+
+Use the approved Green Home Loan reference image and match the EV Finance layout.
+
+### Hero section
+Heading: “A Greener Home for a Brighter Future”
+
+Supporting text:
+
+“Explore energy-efficient home improvements, estimated savings, and flexible financing options.”
+
+### Current home versus greener home bar graph
+
+Compare:
+- Current estimated annual household energy spending.
+- Estimated annual energy spending after selected improvements.
+
+Use INR, clear labels, a defined reporting period, and an explanation of assumptions.
+
+Calculate:
+
+Estimated annual savings = Current annual home energy spending − Estimated annual home energy spending after improvements.
+
+Percentage reduction = Estimated annual savings / Current annual home energy spending × 100.
+
+Handle zero denominators and cases where projected spending increases.
+
+Potential improvements may include efficient appliances, insulation, efficient heating and cooling, and double glazing. Recommend improvements only when relevant information supports them.
+
+### AI explanation
+
+Title: “Why Consider a Green Home Loan?”
+
+Explain how available home-energy information relates to suggested improvements and estimated savings.
+
+Show supporting factors, assumptions, limitations, and possible next steps.
+
+Never invent savings, subsidies, eligibility, or approval claims.
+
+### Green Home Loan Calculator
+
+Required inputs:
+- Type of improvement.
+- Estimated project cost.
+- Loan tenure.
+
+Include an optional down-payment field.
+
+The backend calculates loan amount, monthly EMI, total interest, and total repayment.
+
+Use the same EMI logic and validation as EV Finance. Keep formulas out of the customer interface and show an estimate disclaimer.
+
+## 10. SOLAR FINANCE PAGE
+
+Use the approved Solar Finance reference image as the primary design reference.
+
+Its layout must closely match EV Finance and Green Home Loan, including the dark green sidebar, common header, hero banner, comparison graph, AI explanation, calculator, and result cards.
+
+### Hero section
+
+Heading:
+
+“Generate Your Own Electricity, Save More”
+
+Supporting text:
+
+“Explore solar panel installation with flexible financing options and understand your potential electricity savings.”
+
+Use a suitable solar-roof or residential solar installation image.
+
+### Annual Electricity Cost Comparison
+
+Display a bar graph comparing:
+
+1. **Current Electricity Cost:** Estimated annual electricity cost without solar.
+2. **With Solar Panels:** Estimated annual grid electricity cost after solar installation.
+
+Include:
+- Chart title.
+- Clearly labelled bars.
+- INR currency.
+- Reporting period.
+- Values and legend.
+- Estimated annual savings summary.
+
+Calculate:
+
+Estimated annual electricity savings = Current annual electricity cost − Estimated annual electricity cost after solar.
+
+Percentage reduction = Estimated annual electricity savings / Current annual electricity cost × 100.
+
+Only calculate the percentage when the denominator is positive.
+
+Use customer-provided or clearly disclosed demo assumptions. If available, account for system size, expected generation, electricity tariff, self-consumption, and any relevant recurring costs.
+
+Do not assume solar panels eliminate the electricity bill. Account for remaining grid consumption and limitations where the data supports them.
+
+Clearly distinguish gross bill reduction from net financial savings after relevant costs.
+
+### AI explanation: Why Consider Solar Finance?
+
+Display a dedicated section titled:
+
+**Why Consider Solar Finance?**
+
+Generate a concise explanation based on available electricity spending, home information, and calculated solar estimates.
+
+Potential factors include:
+- Current electricity expenditure.
+- Estimated electricity generated.
+- Estimated reduction in grid electricity usage.
+- Potential bill reduction.
+- Environmental benefits, only when supported by documented emission factors and calculations.
+- Important assumptions and limitations.
+
+Use the backend calculation results. The AI explanation must not invent generation figures, guaranteed savings, subsidies, or installation eligibility.
+
+If the system cannot estimate savings reliably, explain which inputs are missing.
+
+### Solar Installation Calculator
+
+Create a dedicated **Solar Installation Calculator** card.
+
+Required inputs:
+- System size in kW.
+- Estimated installation cost.
+- Loan tenure.
+
+Include an optional down-payment field.
+
+Allow appropriate configurable values for annual interest rate and solar-performance assumptions, using clearly labelled defaults where applicable.
+
+The backend calculates:
+- Estimated loan amount.
+- Monthly EMI.
+- Total interest.
+- Total repayment.
+- Estimated solar generation, if sufficient inputs are available.
+- Estimated monthly electricity bill reduction, if sufficient inputs are available.
+- Estimated annual savings.
+- Estimated payback period, only when the required assumptions and costs are available.
+
+Use the same backend EMI logic as the other calculators.
+
+Keep formulas out of the customer interface. Display clear labels, INR formatting, reasonable rounding, and an estimate disclaimer.
+
+Do not fabricate a payback period or imply that a solar installation is guaranteed to be profitable.
+
+### Solar result cards
+
+Use a clear result panel for:
+- Loan Amount.
+- Monthly EMI.
+- Total Interest.
+- Total Repayment.
+
+Where reliable calculation inputs exist, also display:
+- Estimated Solar Generation.
+- Estimated Monthly Bill Reduction.
+- Estimated Annual Savings.
+- Estimated Payback Period.
+
+Show unavailable results as “Enter the required details to estimate” rather than displaying invented figures.
+
+## 11. OFFICER PORTAL
+
+The officer portal must retain the same visual identity while prioritizing customer engagement monitoring.
+
+### Officer sidebar
+
+Include exactly:
+1. Home.
+2. Customers.
+3. Reports.
+4. Logout.
+
+### Welcome section
+
+Heading: “Monitor Customer Engagement”
+
+Supporting text:
+
+“Track engagement with green-finance recommendations and identify where further support may help.”
+
+### Summary cards
+
+Display:
+1. Total Customers.
+2. Viewed Recommendations.
+3. Started a Product.
+4. Completed a Product or Defined Product Action.
+
+Define each metric and calculate it from the database. Avoid double-counting.
+
+### Filters
+
+Provide:
+- Search customer.
+- Product Type.
+- Engagement Status.
+- Date Range.
+- Authorized Branch.
+- Apply Filters.
+- Export, if implemented securely.
+
+### Customer Engagement Details table
+
+Include these columns:
+
+- S. No.
+- Customer Name.
+- Customer ID.
+- Product Recommended.
+- Date Recommended.
+- Status.
+- Last Activity.
+- Actions.
+
+Support pagination, sorting where useful, functional filtering, and responsive table behaviour.
+
+### Engagement statuses
+
+- **Not Started:** No recorded engagement.
+- **Viewed:** Customer viewed the recommendation.
+- **In Progress:** Customer started a defined product or calculator flow.
+- **Completed:** Customer completed the defined action.
+
+Record events and timestamps in the backend. Do not randomly change statuses or infer behaviour without evidence.
+
+### View customer details
+
+Show authorized recommendation history, product, date issued, recorded views, calculator starts, completion events, and last recorded activity.
+
+Do not expose raw bank transactions, passwords, credentials, or unnecessary sensitive information.
+
+### Officer analytics
+
+Include three charts:
+1. Engagement by Product — EV Finance, Green Home Loan, and Solar Finance.
+2. Customer Status Overview — Not Started, Viewed, In Progress, and Completed.
+3. Engagement Trend — recorded engagement over time.
+
+All chart data must match database records and summary metrics.
+
+### Export
+
+If implemented, export only the filtered, authorized data required for the officer's work. Exclude sensitive credentials and handle spreadsheet-formula characters safely.
+
+## 12. AI RECOMMENDATION ENGINE
+
+The defining feature of G.I.F.T. is the connection between spending information, explainable green-finance recommendations, transparent cost estimates, and measurable customer engagement.
+
+Build a recommendation engine that:
+1. Reads permitted customer spending and profile data.
+2. Evaluates product-relevance rules.
+3. Suggests relevant EV Finance, Green Home Loan, and Solar Finance options.
+4. Uses deterministic backend calculations for numerical estimates.
+5. Generates explanations grounded in calculated values.
+6. Records recommendation issuance and subsequent engagement.
+7. Provides authorized officers with accurate engagement summaries.
+
+Store recommendation IDs, customer references, product categories, timestamps, supporting factors, calculated estimates, assumptions, and engagement events as appropriate.
+
+Use explainable rules or a lightweight interpretable model. Do not claim an advanced AI model exists unless it is implemented and evaluated.
+
+If an LLM is used, restrict it to explaining validated results. It must not invent financial figures, approve loans, infer creditworthiness from spending alone, or guarantee savings.
+
+## 13. BACKEND, DATABASE, AND API
+
+Create a suitable data model for:
+- Users and hashed authentication credentials.
+- Customer profiles.
+- Officer profiles and authorized branches.
+- Simulated spending inputs.
+- Recommendations and supporting factors.
+- Calculator inputs and results, where persistence is useful.
+- Engagement events and status history.
+- Relevant audit events.
+
+Use constraints, foreign keys, timestamps, and indexes where appropriate. Minimize storage of sensitive information.
+
+Implement endpoints for:
+- Customer registration and authentication.
+- Officer authentication.
+- Logout and sessions.
+- Customer dashboard and spending data.
+- EV comparison and loan calculations.
+- Green Home comparison and loan calculations.
+- Solar comparison and installation calculations.
+- Recommendation retrieval and explanation data.
+- Engagement event recording.
+- Officer metrics and customer tables.
+- Filters, customer detail, and authorized export.
+
+Validate all inputs on the backend. Return consistent errors and suitable HTTP status codes. Enforce authentication and authorization on protected endpoints.
+
+All loan and savings calculations must be performed in the backend. The frontend collects inputs and displays results returned by the server.
+
+Seed the prototype with fictional, internally consistent data clearly labelled as simulated.
+
+## 14. SECURITY, PRIVACY, AND FINANCIAL RESPONSIBILITY
+
+- Hash passwords using a suitable algorithm.
+- Use secure session handling and cookie settings.
+- Enforce role and branch permissions on every protected API.
+- Never store plaintext passwords or bank credentials.
+- Never expose secrets in frontend code.
+- Do not request bank PINs or credentials.
+- Clearly distinguish demo data from real data.
+- Disclose assumptions behind cost and savings estimates.
+- Distinguish bill reduction from net savings.
+- Do not promise loan approval, eligibility, subsidies, or guaranteed savings.
+- Collect only necessary customer information.
+- Restrict officer access to authorized records.
+- Treat recommendations as optional exploratory guidance.
+
+## 15. TESTING AND PROJECT EVALUATION
+
+Evaluate the application as a strict project reviewer.
+
+### Functional testing
+- Customer and officer authentication.
+- Role-based access restrictions.
+- Correct customer navigation.
+- Three spending percentage cards.
+- Green Insights Overview with three product categories.
+- EV comparison graph and loan calculator.
+- Green Home comparison graph and loan calculator.
+- Solar electricity comparison graph and installation calculator.
+- Functional officer search and filters.
+- Accurate engagement statuses and charts.
+- Correct logout and session invalidation.
+- Responsive layout and accessible controls.
+
+### Financial calculation testing
+Test:
+- Standard positive-interest loan.
+- Zero-interest loan.
+- Zero down payment.
+- Down payment equal to project cost.
+- Invalid negative prices.
+- Down payment exceeding cost.
+- Invalid tenure.
+- Missing required inputs.
+- Current and projected costs equal.
+- Projected costs greater than current costs.
+- Insufficient solar-generation information.
+- Missing spending information.
+
+Verify results independently.
+
+### Security testing
+- Passwords are never stored in plaintext.
+- Unauthenticated requests cannot access protected APIs.
+- Customers cannot access officer routes or APIs.
+- Officers cannot access unauthorized branches or records.
+- Sensitive information is excluded from logs and exports.
+
+### Design testing
+- Consistent colours, typography, navigation, and spacing.
+- Clear chart labels and currency.
+- Readable tables and calculator outputs.
+- Useful loading, empty, success, and error states.
+- No dead buttons or broken links.
+- Reference images followed closely.
+
+### End-to-end demonstration
+1. Sign in as a demo customer.
+2. Review spending percentages and recommendations.
+3. Open EV Finance and calculate an estimate.
+4. Open Green Home Loan and calculate an estimate.
+5. Open Solar Finance and calculate an estimate.
+6. Record a recommendation engagement event.
+7. Sign in as an authorized demo officer.
+8. Find the corresponding customer record.
+9. Verify that the table and summary metrics reflect the recorded event.
+
+Use real stored demo events for this flow, not manually fabricated status changes.
+
+## 16. DELIVERABLES
+
+Provide:
+1. Complete frontend and backend source code.
+2. Database schema and seed scripts.
+3. All eight approved interfaces.
+4. Connected APIs and calculation modules.
+5. Recommendation and engagement tracking.
+6. Automated tests for critical calculations and authorization.
+7. README with exact setup and run instructions.
+8. Clearly labelled local demo credentials.
+9. Project evaluation report describing implementation, tests, architecture, assumptions, limitations, and remaining integration work.
+
+Do not claim a feature is complete if it is only a static mockup.
+
+## 17. IMPLEMENTATION SEQUENCE
+
+**Phase 1:** Inspect the project, reference images, and existing dependencies. Present the plan.
+
+**Phase 2:** Establish shared styling, layout components, database, authentication, and role-based access.
+
+**Phase 3:** Build customer Home, EV Finance, Green Home Loan, and Solar Finance pages.
+
+**Phase 4:** Build officer login, customer engagement table, filters, and analytics.
+
+**Phase 5:** Connect all pages to backend endpoints and test calculations, authorization, and data consistency.
+
+**Phase 6:** Complete the end-to-end demo, README, and evaluation report.
+
+Keep the application runnable throughout development. Do not silently omit features if the project is too large for one pass.
+
+## FINAL INSTRUCTION
+
+Build G.I.F.T. as a distinctive, explainable green-finance application that combines premium banking design with functional software.
+
+Its defining quality is the complete journey from spending information to relevant recommendations, backend-calculated estimates, and measurable customer engagement.
+
+Prioritize correctness, usability, privacy, explainability, and credible project evaluation over decorative complexity.
+
+Begin by inspecting the existing project and the provided images. Present the implementation plan, then build, integrate, and test the application in phases. Clearly report what works, what has been tested, and what remains a prototype limitation.

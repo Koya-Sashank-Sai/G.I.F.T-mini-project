@@ -1,0 +1,8 @@
+{
+  "name": "G.I.F.T. — Green Insights & Financial Transition Platform",
+  "description": "Green Insights & Financial Transition banking platform enabling customers to explore sustainable financing (EV, Green Home, Solar) and empowering bank officers to monitor engagement.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
